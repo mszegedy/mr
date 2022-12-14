@@ -22,7 +22,6 @@ patched.sfc: base.sfc
 	$(LM_BIN)/uberasm patches/uberasm.txt patched.sfc
 
   # off-the-shelf
-  # dcsave is broken on sa-1 roms for now; need to fix it myself
 	$(ASAR) $(OTS_PATCHES)/dcsave/dcsave.asm patched.sfc
 	$(ASAR) $(OTS_PATCHES)/Disable_Timer.asm patched.sfc
 	$(ASAR) $(OTS_PATCHES)/coin-counters/coincounter_1.6.asm patched.sfc
