@@ -1,7 +1,9 @@
 **/*.sfc
+**/*.smc
 sysLMRestore
 mr.bps
 *.srm
 *.000
 *.bst
 *.extmod
+.#*

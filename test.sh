@@ -1,3 +1,3 @@
 #!/bin/sh
 
-bsnes-accuracy mr.sfc
+bsnes-accuracy ${1:-mr.smc}
