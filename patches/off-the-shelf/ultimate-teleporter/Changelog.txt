@@ -1,0 +1,3 @@
+v1.1 - July 8, 2018: Added top screen teleporting. Now need a 2nd free ram address to check for it. Added proper options inside the patch itself instead of users having to uncomment the code they wanted. Updated the readme to reflect the changes.
+
+v1.0 - July 7, 2018: Initial release 

@@ -1,0 +1,17 @@
+v1.3
+--------------------
+LX5's bwram_plus:
+Fixed a bug init would happen after intro level's load, leading to weird issues with initialized RAMs. Example: if you remove the code that takes care of initializing manually the life counter and try to do that with bwram's default values, you will see your life counter suddenly jump from 1 to the right value. And many other issues of the same variation.
+I also brought the load routine to the same hijack, so now the game chooses whether to init or load, instead of trying to do both. In v1.2, I had added a lock so that wouldn't happen, I removed it in this version. Both routines are running at the same hijack sram_plus uses now.
+
+
+v1.2
+--------------------
+MarioE's sram_plus:
+Fixed a bug it would restore a piece of code from the original game on top of a LM hijack (message sprite fix (shift+f8)) that would send you to the wrong OW submap.
+
+v1.1
+--------------------
+LX5's bwram_plus:
+Fixed a bug the patch would load a save even if there was no save to be loaded (values would be loaded with FF or whatever else was in the tables).
+Fixed a bug the patch would write garbage to address+1, according to the tables, so dl $4013C7 : dw $0001 would write to 4013C7 and 4013C8.

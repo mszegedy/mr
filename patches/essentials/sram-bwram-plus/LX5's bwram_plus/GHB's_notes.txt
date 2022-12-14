@@ -1,0 +1,11 @@
+Use this formula to convert origional smw's ram address to the new ram address
+sa-1 remaps to:
+
+	$7E:C800-$7E:FFFF -> $40:C800-$40:FFFF	;\subtract by $3E0000
+	$7F:C800-$7E:FFFF -> $41:C800-$41:FFFF	;/
+	$7F:9A7B-$7F:9C7A -> $41:8800-$41:89FF	;>subtract by $3E127B
+	$70:0000-$70:07FF -> $41:C000-$41:C7FF	;>subtract by $2E4000
+	$70:0800-$70:27FF -> $41:A000-$41:BFFF	;>subtract by $2E6800
+
+If its other than the above ones, simply change the banks to either $40 or $41.
+For more information, check \sa1pack_125\docs.
