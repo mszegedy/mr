@@ -7,12 +7,12 @@ all: clean mr.smc mr.bps
 mr.bps: base.sfc mr.smc
 	$(LM_BIN)/flips --create -b base.sfc mr.smc mr.bps
 
-mr.smc: patched.smc finalize.bps
+mr.smc: patched.smc
 	cp patched.smc mr.smc
   # test-change.bps tweaks lvl 03 in lunar magic to be passable. this is to
   # test this makefile's way of applying lunar magic changes (as incremental
   # patches). seems to work so far.
-	$(LM_BIN)/flips --apply --exact test-change.bps mr.smc
+#	$(LM_BIN)/flips --apply --exact test-change.bps mr.smc
 
 patched.smc: base.sfc
 	cp base.sfc patched.sfc
@@ -36,6 +36,9 @@ patched.smc: base.sfc
 	$(ASAR) $(OTS_PATCHES)/OffscreenIndicatorPatch.asm patched.smc
 	$(ASAR) $(OTS_PATCHES)/ultimate-teleporter/UltimateTeleporter.asm patched.smc
 	$(ASAR) patches/tweaks.asm patched.smc
+
+  # bespoke
+	$(ASAR) patches/bespoke/no-button-aliases.asm patched.smc
 
 clean:
 	rm patched.sfc patched.smc mr.smc mr.bps ||:

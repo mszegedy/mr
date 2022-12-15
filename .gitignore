@@ -6,4 +6,6 @@ mr.bps
 *.000
 *.bst
 *.extmod
+*.bp
+*.log
 .#*
