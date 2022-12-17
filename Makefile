@@ -1,6 +1,7 @@
 LM_BIN := /home/mszegedy/lm/bin
 ASAR := asar
-OTS_PATCHES := patches/off-the-shelf
+FIXES := patches/fixes
+OTS := patches/off-the-shelf
 
 all: clean mr.smc mr.bps
 
@@ -28,13 +29,19 @@ patched.smc: base.sfc
   # add changes made by lm to rom when you do nothing and then save it
 	$(LM_BIN)/flips --apply --exact add-lm-headers.bps patched.sfc patched.smc
 
+  # fixes and optimizations
+	$(ASAR) $(FIXES)/lavafix_asar.asm patched.smc
+	$(ASAR) $(FIXES)/vram_optimize.asm patched.smc
+	$(ASAR) $(FIXES)/PlayerXSpeedFix/PlayerXSpeedFix.asm patched.smc
+
   # off-the-shelf
-	$(ASAR) $(OTS_PATCHES)/dcsave/dcsave.asm patched.smc
-	$(ASAR) $(OTS_PATCHES)/Disable_Timer.asm patched.smc
-	$(ASAR) $(OTS_PATCHES)/coin-counters/coincounter_1.6.asm patched.smc
-	$(ASAR) $(OTS_PATCHES)/coin-counters/disablescoresprites.asm patched.smc
-	$(ASAR) $(OTS_PATCHES)/OffscreenIndicatorPatch.asm patched.smc
-	$(ASAR) $(OTS_PATCHES)/ultimate-teleporter/UltimateTeleporter.asm patched.smc
+	$(ASAR) $(OTS)/dcsave/dcsave.asm patched.smc
+	$(ASAR) $(OTS)/Disable_Timer.asm patched.smc
+	$(ASAR) $(OTS)/coin-counters/coincounter_1.6.asm patched.smc
+	$(ASAR) $(OTS)/coin-counters/disablescoresprites.asm patched.smc
+	$(ASAR) $(OTS)/OffscreenIndicatorPatch.asm patched.smc
+	$(ASAR) $(OTS)/ultimate-teleporter/UltimateTeleporter.asm patched.smc
+#	$(ASAR) $(OTS)/maddash/dash.asm patched.smc
 	$(ASAR) patches/tweaks.asm patched.smc
 
   # bespoke
