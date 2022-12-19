@@ -15,19 +15,19 @@ mr.smc: patched.smc
   # patches). seems to work so far.
 #	$(LM_BIN)/flips --apply --exact test-change.bps mr.smc
 
-patched.smc: base.sfc
-	cp base.sfc patched.sfc
+patched.smc: base.smc
+	cp base.smc patched.smc
 
   # essentials
-	$(ASAR) patches/essentials/sa1/sa1.asm patched.sfc
+	$(ASAR) patches/essentials/sa1/sa1.asm patched.smc
 	$(ASAR) patches/essentials/sram-bwram-plus/LX5\'s\ bwram_plus/bwram_plus.asm \
-		patched.sfc
+		patched.smc
 
   # uberasm
-	$(LM_BIN)/uberasm patches/uberasm.txt patched.sfc
+	$(LM_BIN)/uberasm patches/uberasm.txt patched.smc
 
   # add changes made by lm to rom when you do nothing and then save it
-	$(LM_BIN)/flips --apply --exact add-lm-headers.bps patched.sfc patched.smc
+	$(LM_BIN)/flips --apply --exact add-lm-headers.bps patched.smc patched.smc
 
   # fixes and optimizations
 	$(ASAR) $(FIXES)/lavafix_asar.asm patched.smc
@@ -46,7 +46,8 @@ patched.smc: base.sfc
 
   # bespoke
 	$(ASAR) patches/bespoke/no-button-aliases.asm patched.smc
+	$(ASAR) patches/bespoke/always-running.asm patched.smc
 
 clean:
-	rm patched.sfc patched.smc mr.smc mr.bps ||:
+	rm patched.smc mr.smc mr.bps ||:
 	rm *.srm *.000 *.bst ||:
